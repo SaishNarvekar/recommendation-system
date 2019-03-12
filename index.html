@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form>
+        TravelType
+        <input type="text" name="TravelType" id="TravelType">
+        NumberOfDays
+        <input type="number" name="Days" id="Days">
+        Prefence
+        <select name="Prefence1" id="Prefence1">
+            <option value="Nature">Nature</option>
+            <option value="Monumental">Monumental</option>
+            <option value="Beach">Beach</option>
+            <option value="Adventure">Adventure</option>
+        </select>
+        <select name="Prefence2" id="Prefence2">
+            <option value="Nature">Nature</option>
+            <option value="Monumental">Monumental</option>
+            <option value="Beach">Beach</option>
+            <option value="Adventure">Adventure</option>
+        </select>
+        <select name="Prefence3" id="Prefence3">
+            <option value="Nature">Nature</option>
+            <option value="Monumental">Monumental</option>
+            <option value="Beach">Beach</option>
+            <option value="Adventure">Adventure</option>
+        </select>
+        <select name="Prefence4" id="Prefence4">
+            <option value="Nature">Nature</option>
+            <option value="Monumental">Monumental</option>
+            <option value="Beach">Beach</option>
+            <option value="Adventure">Adventure</option>
+        </select>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <!-- "{0} is dead, but {1} is alive! {0} {2}".format("ASP", "ASP.NET") -->
+
+    <script>
+        var travelType = document.getElementById('TravelType');
+        var days = document.getElementById('Days');
+        var prefence1 = document.getElementById('Prefence1');
+        var prefence2 = document.getElementById('Prefence2');
+        var prefence3 = document.getElementById('Prefence3');
+        var prefence4 = document.getElementById('Prefence4');
+        var form = document.getElementsByTagName('form')[0];
+
+        form.addEventListener("submit", function (event) {
+
+            prefenceList = [prefence1.value,prefence2.value,prefence3.value,prefence4.value]
+
+            baseUrl = "http://127.0.0.1:5000/api/travelType=" + travelType.value + "&numberOfDays=" + days.value + "&prefenceList=" + prefenceList+"";
+            start(baseUrl);
+            event.preventDefault();
+        }, false);
+
+        async function start(url) {
+
+            let response = await fetch(url);
+            let parsed = await response.json();
+
+        }
+
+    </script>
+</body>
+
+</html>

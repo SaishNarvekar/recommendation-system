@@ -10,29 +10,20 @@ cluster = Clustering()
 class Route:
 
     def __init__(self,prefernce,startPoint):
-        self.preferences = ['N','A','B','M']
+        
         self.userPreference = prefernce
         self.starting = startPoint
-        self.filterLocation(prefernce)
+        self.filterLocation(prefernce) #fliter Location based on user location
         
     def filterLocation(self,userPreference):
         sql = "select * from places where type in {}".format(tuple(userPreference))
         cur = con.retrive(sql)
-        with open('persons.csv', 'w') as csvfile:
+        with open('fliter.csv', 'w') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for row in cur:
                 filewriter.writerow(list(row))
                 
-    def traversingClusters(self):
-
-        locations = list()
-        for index in model.filterPlaces(self.starting):
-            locations.append(index)
-    
-        cluster.createClusters(locations)
-        self.one,self.two = cluster.getClusters(locations)
-
     def getLatLong(self,location):
         sql = 'select lat,lng from places where name = "{}"'.format(location)
         # print(sql)
@@ -61,26 +52,6 @@ class Route:
         return sqrt((xa-xb)**2 + (ya-yb)**2)
 
     def GameOver(self):
-        # if self.starting in self.one:
-        #     self.one.remove(self.starting)
-        #     visited = list()
-        #     while(len(self.one)!=0):
-        #         close = self.findClosestLocation(self.starting,self.one)
-        #         print(close)
-        #         visited.append(self.starting)
-        #         self.starting = close
-        #         self.one.remove(close)
-        #     print(visited)
-        # elif self.starting in self.two:
-        #     self.two.remove(self.starting)
-        #     visited = list()
-        #     while(len(self.two)!=0):
-        #         close = self.findClosestLocation(self.starting,self.two)
-        #         print(close)
-        #         visited.append(self.starting)
-        #         self.starting = close
-        #         self.two.remove(close)
-        #     print(visited)
 
         locations = list()
         visitedLocation = list()
@@ -92,7 +63,9 @@ class Route:
         visitedLocation.append(self.starting)
         placesVisited = 0
 
-        while placesVisited !=15:
+        while placesVisited !=20:
+            if len(locations) == 0:
+                break 
             close = self.findClosestLocation(visitedLocation[-1],locations)
             print(close)
             locations.remove(close)
@@ -100,7 +73,7 @@ class Route:
             placesVisited+=1
         print(visitedLocation)
         
-route = Route(['Beach','Monumental'],'Colva Beach') #List will get created by user and filled with data from front end
+route = Route(['Beach','Monumental'],'Vasco da Gama') #List will get created by user and filled with data from front end
 model = Model()
-route.traversingClusters()
+# route.traversingClusters()
 route.GameOver()

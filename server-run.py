@@ -10,10 +10,9 @@ app.secret_key = "82bfce4d0166155f1dd8524112584fb1"
 def index():
     return "Hello World"
 
-@app.route('/api/travelType=<travelType>&preference=<preferenceList>&numberOfDays=<days>')
-def loc(travelType,preferenceList,days):
-    print(preferenceList)
-    return travelType,preferenceList
+@app.route('/api/travelType=<travelType>&numberOfDays=<days>&prefenceList<dataList>')
+def loc(travelType,days,dataList):
+    return travelType
 
 
 if __name__ == '__main__':  
