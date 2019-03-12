@@ -61,26 +61,44 @@ class Route:
         return sqrt((xa-xb)**2 + (ya-yb)**2)
 
     def GameOver(self):
-        if self.starting in self.one:
-            self.one.remove(self.starting)
-            visited = list()
-            while(len(self.one)!=0):
-                close = self.findClosestLocation(self.starting,self.one)
-                print(close)
-                visited.append(self.starting)
-                self.starting = close
-                self.one.remove(close)
-            print(visited)
-        elif self.starting in self.two:
-            self.two.remove(self.starting)
-            visited = list()
-            while(len(self.two)!=0):
-                close = self.findClosestLocation(self.starting,self.two)
-                print(close)
-                visited.append(self.starting)
-                self.starting = close
-                self.two.remove(close)
-            print(visited)
+        # if self.starting in self.one:
+        #     self.one.remove(self.starting)
+        #     visited = list()
+        #     while(len(self.one)!=0):
+        #         close = self.findClosestLocation(self.starting,self.one)
+        #         print(close)
+        #         visited.append(self.starting)
+        #         self.starting = close
+        #         self.one.remove(close)
+        #     print(visited)
+        # elif self.starting in self.two:
+        #     self.two.remove(self.starting)
+        #     visited = list()
+        #     while(len(self.two)!=0):
+        #         close = self.findClosestLocation(self.starting,self.two)
+        #         print(close)
+        #         visited.append(self.starting)
+        #         self.starting = close
+        #         self.two.remove(close)
+        #     print(visited)
+
+        locations = list()
+        visitedLocation = list()
+
+        for index in model.filterPlaces(self.starting):
+            locations.append(index)
+
+        locations.remove(self.starting)
+        visitedLocation.append(self.starting)
+        placesVisited = 0
+
+        while placesVisited !=15:
+            close = self.findClosestLocation(visitedLocation[-1],locations)
+            print(close)
+            locations.remove(close)
+            visitedLocation.append(close)
+            placesVisited+=1
+        print(visitedLocation)
         
 route = Route(['Beach','Monumental'],'Colva Beach') #List will get created by user and filled with data from front end
 model = Model()

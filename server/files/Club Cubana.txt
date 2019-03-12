@@ -1,3 +1,0 @@
-night_club
-point_of_interest
-establishment
