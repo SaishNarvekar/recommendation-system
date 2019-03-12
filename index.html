@@ -45,8 +45,6 @@
 
     </form>
 
-    <!-- "{0} is dead, but {1} is alive! {0} {2}".format("ASP", "ASP.NET") -->
-
     <script>
         var travelType = document.getElementById('TravelType');
         var days = document.getElementById('Days');
@@ -55,6 +53,8 @@
         var prefence3 = document.getElementById('Prefence3');
         var prefence4 = document.getElementById('Prefence4');
         var form = document.getElementsByTagName('form')[0];
+        var data;
+
 
         form.addEventListener("submit", function (event) {
 
@@ -70,6 +70,10 @@
             let response = await fetch(url);
             let parsed = await response.json();
 
+            console.log(parsed);
+            // p = document.createElement('p');
+            // p.value = parsed;
+            // document.getElementsByName('body').appendChild(p)
         }
 
     </script>

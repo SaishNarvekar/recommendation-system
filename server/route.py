@@ -6,11 +6,14 @@ from math import sqrt
 
 con = Connection() #database Connection 
 cluster = Clustering()
+model = Model()
+
 
 class Route:
 
-    def __init__(self,prefernce,startPoint):
+    def __init__(self,startPoint,days,prefernce):
         
+        self.days = days
         self.userPreference = prefernce
         self.starting = startPoint
         self.filterLocation(prefernce) #fliter Location based on user location
@@ -18,7 +21,7 @@ class Route:
     def filterLocation(self,userPreference):
         sql = "select * from places where type in {}".format(tuple(userPreference))
         cur = con.retrive(sql)
-        with open('fliter.csv', 'w') as csvfile:
+        with open('server/filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for row in cur:
@@ -63,17 +66,12 @@ class Route:
         visitedLocation.append(self.starting)
         placesVisited = 0
 
-        while placesVisited !=20:
+        while placesVisited != (self.days*4):
             if len(locations) == 0:
                 break 
             close = self.findClosestLocation(visitedLocation[-1],locations)
-            print(close)
+            # print(close)
             locations.remove(close)
             visitedLocation.append(close)
             placesVisited+=1
-        print(visitedLocation)
-        
-route = Route(['Beach','Monumental'],'Vasco da Gama') #List will get created by user and filled with data from front end
-model = Model()
-# route.traversingClusters()
-route.GameOver()
+        return visitedLocation

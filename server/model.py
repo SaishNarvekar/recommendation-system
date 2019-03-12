@@ -4,8 +4,8 @@ import pandas as pd
 class Model:
     
     def __init__(self):
-        self.poi= pd.read_csv('fliter.csv',index_col='Name',names = ['placeID','Name','Lat','Lng','Rating','Type'])
-        self.reviews = pd.read_csv('reviews.csv',index_col='Name',names=['ID','Name','UserID','UserRating'])
+        self.poi= pd.read_csv('server/filter.csv',index_col='Name',names = ['placeID','Name','Lat','Lng','Rating','Type'])
+        self.reviews = pd.read_csv('server/reviews.csv',index_col='Name',names=['ID','Name','UserID','UserRating'])
         self.poi.drop(columns=['placeID','Lat','Lng'],axis=1,inplace=True)
         self.reviews.drop(columns=['ID'],axis=1,inplace=True)
         self.overall = self.poi.join(self.reviews,on='Name')
