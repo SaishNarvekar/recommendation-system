@@ -1,11 +1,9 @@
 from connection import Connection
 import csv
 from model import Model
-from clustering import Clustering
 from math import sqrt
 
 con = Connection() #database Connection 
-cluster = Clustering()
 model = Model()
 
 
@@ -21,7 +19,7 @@ class Route:
     def filterLocation(self,userPreference):
         sql = "select * from places where type in {}".format(tuple(userPreference))
         cur = con.retrive(sql)
-        with open('server/filter.csv', 'w+') as csvfile:
+        with open('filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for row in cur:
@@ -62,11 +60,12 @@ class Route:
         for index in model.filterPlaces(self.starting):
             locations.append(index)
 
+    
         locations.remove(self.starting)
         visitedLocation.append(self.starting)
-        placesVisited = 0
+        placesVisited = 1
 
-        while placesVisited != (self.days*4):
+        while placesVisited != int(self.days)*4:
             if len(locations) == 0:
                 break 
             close = self.findClosestLocation(visitedLocation[-1],locations)

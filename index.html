@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +42,7 @@
             <option value="Adventure">Adventure</option>
         </select>
 
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit" onclick="getData();return False;">Submit</button>
 
     </form>
 
@@ -52,18 +53,16 @@
         var prefence2 = document.getElementById('Prefence2');
         var prefence3 = document.getElementById('Prefence3');
         var prefence4 = document.getElementById('Prefence4');
-        var form = document.getElementsByTagName('form')[0];
         var data;
 
 
-        form.addEventListener("submit", function (event) {
+        function getData(){
 
             prefenceList = [prefence1.value,prefence2.value,prefence3.value,prefence4.value]
 
-            baseUrl = "http://127.0.0.1:5000/api/travelType=" + travelType.value + "&numberOfDays=" + days.value + "&prefenceList=" + prefenceList+"";
+            baseUrl = "http://127.0.0.1:5000/api/travelType=Railway&numberOfDays=3&prefence1=Monumental&prefence2=Beach&prefence3=Adventure&prefence4=Nature";
             start(baseUrl);
-            event.preventDefault();
-        }, false);
+        }
 
         async function start(url) {
 
@@ -75,7 +74,6 @@
             // p.value = parsed;
             // document.getElementsByName('body').appendChild(p)
         }
-
     </script>
 </body>
 
