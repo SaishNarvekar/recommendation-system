@@ -17,7 +17,7 @@ class Route:
         self.filterLocation(prefernce) #fliter Location based on user location
         
     def filterLocation(self,userPreference):
-        sql = "select * from places where type in {}".format(tuple(userPreference))
+        sql = "select * from places where type in {} UNION select * from places where name = '{} '".format(tuple(userPreference),'Vasco da Gama')
         cur = con.retrive(sql)
         with open('filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
@@ -65,7 +65,7 @@ class Route:
         visitedLocation.append(self.starting)
         placesVisited = 1
 
-        while placesVisited != int(self.days)*4:
+        while placesVisited != int(self.days)*3:
             if len(locations) == 0:
                 break 
             close = self.findClosestLocation(visitedLocation[-1],locations)

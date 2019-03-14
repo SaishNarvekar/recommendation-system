@@ -34,6 +34,7 @@ class Itinerary:
             route = Route('Colva Beach',self.days,self.prefernce) #List will get created by user and filled with data from front end
             itinerary = route.GameOver()
             self.output[i] = self.formatedOutput(itinerary)
+
             return self.output
 
     def formatedOutput(self,itinerary):
