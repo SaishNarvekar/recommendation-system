@@ -17,7 +17,11 @@ class Route:
         self.filterLocation(prefernce) #fliter Location based on user location
         
     def filterLocation(self,userPreference):
-        sql = "select * from places where type in {} UNION select * from places where name = '{} '".format(tuple(userPreference),'Vasco da Gama')
+
+        if 'Beach' in userPreference:
+            sql = "select * from places where type in {} and Rating >= 4.0 UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(tuple(userPreference),'Vasco da Gama','Colva Beach')
+        else:
+            sql = "select * from places where type in {} UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(tuple(userPreference),'Vasco da Gama','Colva Beach')
         cur = con.retrive(sql)
         with open('filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
