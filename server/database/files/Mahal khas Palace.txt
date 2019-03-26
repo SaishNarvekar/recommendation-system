@@ -1,0 +1,6 @@
+bar
+lodging
+restaurant
+point_of_interest
+food
+establishment

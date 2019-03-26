@@ -1,0 +1,4 @@
+premise
+natural_feature
+point_of_interest
+establishment

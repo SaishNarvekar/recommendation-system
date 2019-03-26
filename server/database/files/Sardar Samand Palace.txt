@@ -1,0 +1,4 @@
+premise
+lodging
+point_of_interest
+establishment

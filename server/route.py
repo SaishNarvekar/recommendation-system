@@ -9,20 +9,30 @@ model = Model()
 
 class Route:
 
-    def __init__(self,startPoint,days,prefernce):
+    def __init__(self,startPoint,days,prefernce,state):
         
         self.days = days
         self.userPreference = prefernce
         self.starting = startPoint
-        self.filterLocation(prefernce) #fliter Location based on user location
+        self.state = state
+        self.filterLocation(prefernce,state) #fliter Location based on user location
         
-    def filterLocation(self,userPreference):
+    def filterLocation(self,userPreference,state):
 
-        if 'Beach' in userPreference:
-            sql = "select * from places where type in {} and Rating >= 4.0 UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(tuple(userPreference),'Vasco da Gama','Colva Beach')
-        else:
-            sql = "select * from places where type in {} UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(tuple(userPreference),'Vasco da Gama','Colva Beach')
+        if self.state == 'Goa':
+
+            if 'Beach' in userPreference:
+                sql = "select * from places where state = '{}' and type in {} and Rating >= 4.0 UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(self.state,tuple(userPreference),'Vasco da Gama','Colva Beach')
+            else:
+                sql = "select * from places where state = '{}' and type in {} UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(self.state,tuple(userPreference),'Vasco da Gama','Colva Beach')
+
+        if self.state == 'Rajasthan':
+            # print('Here')
+            sql = "select * from places where state = '{}' and Rating >= 4.0".format(self.state)
+
+
         cur = con.retrive(sql)
+        # print(cur)
         with open('filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
@@ -64,6 +74,7 @@ class Route:
         for index in model.filterPlaces(self.starting):
             locations.append(index)
 
+        # print(locations)
     
         locations.remove(self.starting)
         visitedLocation.append(self.starting)

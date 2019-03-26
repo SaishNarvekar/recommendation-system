@@ -1,0 +1,4 @@
+hardware_store
+store
+point_of_interest
+establishment

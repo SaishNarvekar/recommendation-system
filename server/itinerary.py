@@ -4,11 +4,12 @@ from connection import Connection
 
 class Itinerary:
 
-    def __init__(self,travelType,days,prefernce):
+    def __init__(self,travelType,days,prefernce,state):
 
         self.travelType = travelType
         self.days = days
         self.prefernce = prefernce
+        self.state = state
         self.output = {}
         self.con = Connection()
 
@@ -16,26 +17,45 @@ class Itinerary:
 
         i  = 0
 
-        if self.travelType == 'Airway':
+        if self.state == 'Goa':
 
-            route = Route('Vasco da Gama',self.days,self.prefernce) #List will get created by user and filled with data from front end
-            itinerary = route.GameOver()
-            self.output[i] = self.formatedOutput(itinerary)
-            return self.output
+            if self.travelType == 'Airway':
 
-        if self.travelType == 'Railway':
+                route = Route('Vasco da Gama',self.days,self.prefernce,self.state) #List will get created by user and filled with data from front  end
+                itinerary = route.GameOver()
+                self.output[i] = self.formatedOutput(itinerary)
+                return self.output
 
-            route = Route('Vasco da Gama',self.days,self.prefernce)
-            itinerary = route.GameOver()
-            self.output[i] = self.formatedOutput(itinerary)
-            
-            i+=1
+            if self.travelType == 'Railway':
 
-            route = Route('Colva Beach',self.days,self.prefernce) #List will get created by user and filled with data from front end
-            itinerary = route.GameOver()
-            self.output[i] = self.formatedOutput(itinerary)
+                route = Route('Vasco da Gama',self.days,self.prefernce,self.state)
+                itinerary = route.GameOver()
+                self.output[i] = self.formatedOutput(itinerary)
 
-            return self.output
+                i+=1
+
+                route = Route('Colva Beach',self.days,self.prefernce,self.state) #List will get created by user and filled with data from front end
+                itinerary = route.GameOver()
+                self.output[i] = self.formatedOutput(itinerary)
+
+                return self.output
+
+        if self.state == 'Rajasthan':
+
+            if self.travelType == 'Airway':
+
+                route = Route('Jaswant Thada',self.days,self.prefernce,self.state) #List will get created by user and filled with data from front  end
+                itinerary = route.GameOver()
+                self.output[i] = self.formatedOutput(itinerary)
+                return self.output
+
+            if self.travelType == 'Railway':
+
+                route = Route('Jaigarh Fort',self.days,self.prefernce,self.state)
+                itinerary = route.GameOver()
+                self.output[i] = self.formatedOutput(itinerary)
+
+                return self.output
 
     def formatedOutput(self,itinerary):
         formatedItinerary = list()

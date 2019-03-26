@@ -1,0 +1,4 @@
+zoo
+park
+point_of_interest
+establishment
