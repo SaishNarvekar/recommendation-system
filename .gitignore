@@ -1,3 +1,4 @@
-
-/server/__pycache__/*
+/server/__pycache__/
+/server/database/__pycache__/
 /server/database/files
+.gitignore
