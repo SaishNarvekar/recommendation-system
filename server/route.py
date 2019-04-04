@@ -1,6 +1,6 @@
-from connection import Connection
+from server.connection import Connection
 import csv
-from model import Model
+from server.model import Model
 from math import sqrt
 
 con = Connection() #database Connection 
@@ -33,7 +33,7 @@ class Route:
 
         cur = con.retrive(sql)
         # print(cur)
-        with open('filter.csv', 'w+') as csvfile:
+        with open('C:\\Users\\narve\\Desktop\\Recommendation-System\\server\\filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for row in cur:

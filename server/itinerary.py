@@ -1,5 +1,5 @@
-from route import Route
-from connection import Connection
+from server.route import Route
+from server.connection import Connection
 
 
 class Itinerary:
