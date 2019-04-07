@@ -33,7 +33,7 @@ class Route:
 
         cur = con.retrive(sql)
         # print(cur)
-        with open('C:\\Users\\narve\\Desktop\\Recommendation-System\\server\\filter.csv', 'w+') as csvfile:
+        with open('C:\\Users\\narve\\Desktop\\Recommendation-System\\server\\files\\filter.csv', 'w+') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for row in cur:

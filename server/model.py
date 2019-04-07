@@ -7,8 +7,8 @@ class Model:
         pass
 
     def filterPlaces(self,starting):
-        self.poi= pd.read_csv('C:\\Users\\narve\\Desktop\\Recommendation-System\\server\\filter.csv',index_col='Name',names = ['placeID','Name','Lat','Lng','Rating','Type','State'])
-        self.reviews = pd.read_csv('C:\\Users\\narve\Desktop\\Recommendation-System\\server\\reviews.csv',index_col='Name',names=['ID','Name','UserID','UserRating'])
+        self.poi= pd.read_csv('C:\\Users\\narve\\Desktop\\Recommendation-System\\server\\files\\filter.csv',index_col='Name',names = ['placeID','Name','Lat','Lng','Rating','Type','State'])
+        self.reviews = pd.read_csv('C:\\Users\\narve\Desktop\\Recommendation-System\\server\\files\\reviews.csv',index_col='Name',names=['ID','Name','UserID','UserRating'])
         self.poi.drop(columns=['placeID','Lat','Lng','State'],axis=1,inplace=True)
         self.reviews.drop(columns=['ID'],axis=1,inplace=True)
         self.overall = self.poi.join(self.reviews,on='Name')
