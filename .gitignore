@@ -1,4 +1,8 @@
 /server/__pycache__/
 /server/database/__pycache__/
 /server/database/files
-.gitignore
+/server/files/filter.csv
+/sql
+
+
+!.gitignore
