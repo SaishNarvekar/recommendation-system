@@ -1,4 +1,0 @@
-park
-premise
-point_of_interest
-establishment

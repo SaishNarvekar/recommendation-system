@@ -1,5 +1,0 @@
-grocery_or_supermarket
-store
-point_of_interest
-food
-establishment

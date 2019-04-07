@@ -1,5 +1,0 @@
-hindu_temple
-premise
-place_of_worship
-point_of_interest
-establishment

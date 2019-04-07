@@ -1,4 +1,0 @@
-doctor
-health
-point_of_interest
-establishment
