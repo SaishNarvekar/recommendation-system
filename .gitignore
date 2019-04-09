@@ -2,7 +2,8 @@
 /server/database/__pycache__/
 /server/database/files
 /server/files/filter.csv
-/sql
+/sql.txt
+/first.bat
 
 
 !.gitignore

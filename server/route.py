@@ -28,8 +28,7 @@ class Route:
 
         if self.state == 'Rajasthan':
             # print('Here')
-            sql = "select * from places where state = '{}' and Rating >= 4.0".format(self.state)
-
+            sql = "select * from places where state = '{}' and Rating >= 4.5 and type in {} UNION select * from places where name = 'Jaswant Thada' UNION select * from places where name = 'Jaigarh Fort'".format(self.state,tuple(userPreference))
 
         cur = con.retrive(sql)
         # print(cur)
