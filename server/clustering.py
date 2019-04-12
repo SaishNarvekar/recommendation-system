@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.cluster.vq import kmeans2, whiten
-from connection import Connection
+from server.connection import Connection
 import json
 
 con = Connection()

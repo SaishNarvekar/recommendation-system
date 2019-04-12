@@ -27,7 +27,6 @@ class Route:
                 sql = "select * from places where state = '{}' and type in {} UNION select * from places where name = '{}' UNION select * from places where name = '{}'".format(self.state,tuple(userPreference),'Vasco da Gama','Colva Beach')
 
         if self.state == 'Rajasthan':
-            # print('Here')
             sql = "select * from places where state = '{}' and Rating >= 4.5 and type in {} UNION select * from places where name = 'Jaswant Thada' UNION select * from places where name = 'Jaigarh Fort'".format(self.state,tuple(userPreference))
 
         cur = con.retrive(sql)
@@ -37,7 +36,7 @@ class Route:
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for row in cur:
                 filewriter.writerow(list(row))
-                
+    # Util Functions            
     def getLatLong(self,location):
         sql = 'select lat,lng from places where name = "{}"'.format(location)
         # print(sql)
